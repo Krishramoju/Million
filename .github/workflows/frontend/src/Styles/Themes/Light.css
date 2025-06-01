@@ -1,0 +1,51 @@
+/* ==========================
+   light.css – Light Theme Definitions
+   ========================== */
+
+:root {
+  /* Base Colors */
+  --background-color: #fdfdfd;
+  --surface-color: #ffffff;
+  --hover-bg: #f5f5f5;
+
+  /* Text */
+  --text-color: #1a1a1a;
+  --muted-color: #6a6a6a;
+
+  /* Accent Theme (NeuroOS Blue) */
+  --accent-color: #3b82f6;
+  --accent-color-light: #dbeafe;
+  --accent-color-soft: #eff6ff;
+
+  /* Borders and Shadows */
+  --border-color: #e0e0e0;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.08);
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+
+  /* UI Components */
+  --intent-bg: #e7f0fe;
+  --timeline-line: #d6e3f8;
+  --card-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  --primary-button: #2563eb;
+  --primary-button-hover: #1d4ed8;
+  --danger-color: #dc2626;
+}
