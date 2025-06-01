@@ -1,0 +1,46 @@
+[package]
+name = "drivers"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your@email.com>"]
+description = "Device drivers for the NeuroOS kernel"
+license = "MIT"
+repository = "https://github.com/yourusername/neuroos"
+
+[dependencies]
+# Hardware abstraction and memory safety
+embedded-hal = "1.0.0"
+heapless = "0.7"
+
+# I/O and display
+hidapi = "2.4"
+serialport = "4.2"
+usb-device = "0.3"
+
+# Sensor input and gesture hardware
+gilrs = "0.10"
+winit = "0.29"
+
+# Graphics and display interfaces
+wgpu = "0.20"
+image = "0.24"
+
+# 3D and holographic projection support (optional)
+bevy = { version = "0.12", optional = true }
+nalgebra = "0.32"
+
+# Logging and debugging
+log = "0.4"
+env_logger = "0.10"
+
+# Cross-platform hardware system info
+sysinfo = "0.30"
+
+[features]
+default = ["base"]
+base = ["hidapi", "serialport", "usb-device"]
+holograph = ["bevy", "nalgebra"]
+all = ["base", "holograph"]
+
+[build-dependencies]
+cc = "1.0"  # If you’re compiling any hardware-level C bindings
