@@ -1,0 +1,65 @@
+[package]
+name = "neurokernel"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your@email.com>"]
+description = "Core cognitive kernel for NeuroOS – an LLM-native operating system"
+license = "MIT"
+repository = "https://github.com/yourusername/neuroos"
+
+[lib]
+name = "neurokernel"
+path = "src/lib.rs"
+
+[[bin]]
+name = "neuroos"
+path = "src/main.rs"
+
+[dependencies]
+# LLM + tokenizer
+tokenizers = "0.13"
+tch = { version = "0.13", features = ["cuda"] }  # PyTorch bindings for inference
+ndarray = "0.15"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Memory management
+memmap2 = "0.5"
+dashmap = "5.5"
+
+# Scheduling and runtime
+tokio = { version = "1", features = ["full"] }
+async-trait = "0.1"
+
+# Filesystem and semantic layers
+walkdir = "2.4"
+pathdiff = "0.2"
+
+# Holographic rendering support
+bevy = { version = "0.12", optional = true }
+nalgebra = "0.32"
+
+# Gestures and input
+gilrs = "0.10"
+winit = "0.29"
+
+# Logging
+log = "0.4"
+env_logger = "0.10"
+
+# System integration
+sysinfo = "0.30"
+uuid = { version = "1", features = ["v4"] }
+
+# Optional features for WebAssembly or CLI tools
+wasm-bindgen = { version = "0.2", optional = true }
+
+[features]
+default = ["runtime"]
+runtime = ["tokio", "async-trait"]
+holograph = ["bevy"]
+web = ["wasm-bindgen"]
+
+[build-dependencies]
+cc = "1.0"  # For compiling any C/C++ hooks if needed
+
