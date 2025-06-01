@@ -1,0 +1,83 @@
+/* ==========================
+   intentTimeline.css – User Intent History Panel
+   ========================== */
+
+.intent-timeline {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.intent-block {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  background-color: var(--surface-color);
+  border-left: 4px solid var(--accent-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.intent-block:hover {
+  background-color: var(--hover-bg);
+}
+
+.intent-icon {
+  width: 36px;
+  height: 36px;
+  background-color: var(--accent-color-light);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+.intent-content {
+  flex: 1;
+}
+
+.intent-title {
+  font-weight: bold;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+  color: var(--text-color);
+}
+
+.intent-subtext {
+  font-size: 0.9rem;
+  color: var(--muted-color);
+  line-height: 1.4;
+}
+
+.intent-timestamp {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-md);
+  font-size: 0.75rem;
+  color: var(--muted-color);
+}
+
+.timeline-separator {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: var(--spacing-sm) 0;
+}
+
+.intent-category {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent-color-soft);
+  color: var(--accent-color);
+  display: inline-block;
+  margin-bottom: 6px;
+}
