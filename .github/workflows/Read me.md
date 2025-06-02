@@ -411,3 +411,11 @@ Want me to:
 - Craft the **30-second elevator pitch** for investors?  
 
 This speech makes NeuroOS feel inevitable—not just another "smart assistant."
+
+This would need 4 teams.
+
+Cerebra Core – The LLM brain with memory and emotion
+Neuron Kernel – Hardware whisperer for AI silicon
+NeuroLang – Turns your words into code
+MindDB – Remembers everything, forgets on command
+
