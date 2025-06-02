@@ -198,3 +198,6 @@ Subject: *"NeuroOS Investment – [Your Offer]"*
 
 Would you like me to tailor this for specific investors or focus on cost-reduction strategies?
 
+ Presentation :- 
+https://app.presentations.ai/view/cF3IaQ
+
