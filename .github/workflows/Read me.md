@@ -89,6 +89,7 @@ Attach your portfolio, and we’ll let the system find the right place for you.
 🎤 X. STEVE JOBS-STYLE SPEECH SNIPPET
 “Today, we didn’t just rethink the phone, or the computer. We rethought the mind. We built a system that doesn’t wait for commands — It learns from curiosity, memory, and emotion. Welcome to NeuroOS — the operating system that thinks with you.”
 Holograms!
+error free llm !
 
 ✅ NEXT STEPS
 Would you like me to:
