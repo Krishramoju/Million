@@ -415,7 +415,12 @@ This speech makes NeuroOS feel inevitable—not just another "smart assistant."
 This would need 4 teams.
 
 Cerebra Core – The LLM brain with memory and emotion.  ML Engineer
+Build LLM with persistent memory and emotional intelligence (no session resets)
 Neuron Kernel – Hardware whisperer for AI silicon - Systems Engineer
+Create LLM-native OS (hardware speaks AI, not threads)
 NeuroLang – Turns your words into code - compiler engineering
+Design self-modifying code from natural intent (no rigid syntax) CLI
 MindDB – Remembers everything, forgets on command - datascience
+Engineer forgettable storage (timebomb vectors, not immutable logs)
+
 
