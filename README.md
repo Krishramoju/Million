@@ -3,6 +3,8 @@ Backend/
 drivers: Self-learning hardware adapters that evolve for peak performance.
 libs: Neural-optimized libraries enabling real-time cognitive processing.
 tools: AI-driven diagnostics that auto-repair system inefficiencies.
+
+
 Frontend/
 
 api: Seamless bidirectional communication between humans and LLM agents.
