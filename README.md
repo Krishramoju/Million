@@ -12,6 +12,7 @@ https://github.com/Krishramoju/Data-extraction-/tree/main
 https://github.com/Krishramoju/Token
 https://github.com/Krishramoju/Authentication/tree/main
 https://github.com/Krishramoju/index.html/tree/main
+https://github.com/Krishramoju/Components/tree/main
 Here’s a **step-by-step battle plan** to transform **NeuroKernel OS** from revolutionary tech into a **world-dominating business**, leveraging its unique advantages:
 
 ---
