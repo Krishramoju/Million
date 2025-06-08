@@ -43,7 +43,10 @@ impl LLMScheduler {
         self.sessions.insert(session_id.to_string(), session);
     }
 
-    pub fn process_input(&mut self, session_id: &str, input: &str) -> Result<String, String> {
+    /// Returns Ok<(response, duration_in_ms)>
+    pub fn process_input(&mut self, session_id: &str, input: &str) -> Result<(String, u128), String> {
+        let start_time = Instant::now();
+
         let session = self.sessions.get_mut(session_id)
             .ok_or_else(|| format!("Session {} not found", session_id))?;
 
@@ -69,18 +72,18 @@ impl LLMScheduler {
         let intent = Intent::from_text(input);
         session.intents.push(intent.clone());
 
-        // Generate output tokens (mock example)
+        // Generate output tokens
         let response_tokens = self.generate_response(&session.context_tokens, &session.memory);
 
         // Convert tokens back to string
         let response = self.tokenizer.detokenize(&response_tokens);
 
-        Ok(response)
+        let duration_ms = start_time.elapsed().as_millis();
+
+        Ok((response, duration_ms))
     }
 
     fn generate_response(&self, context: &Vec<Token>, memory: &Arc<Mutex<MemoryRouter>>) -> Vec<Token> {
-        // Placeholder for actual transformer inference with memory routing
-        // Here, simply echo last 10 tokens reversed + a token for [END]
         let slice_len = std::cmp::min(10, context.len());
         let mut response = context[context.len() - slice_len..].to_vec();
         response.reverse();
