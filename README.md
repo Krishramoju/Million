@@ -17,6 +17,7 @@ https://github.com/Krishramoju/notifications-/tree/main
 https://github.com/Krishramoju/Network/tree/main
 https://github.com/Krishramoju/Process/tree/main
 https://github.com/Krishramoju/llm_speed
+https://github.com/Krishramoju/Auto-correct
 Here’s a **step-by-step battle plan** to transform **NeuroKernel OS** from revolutionary tech into a **world-dominating business**, leveraging its unique advantages:
 
 ---
