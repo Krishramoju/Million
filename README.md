@@ -1,3 +1,4 @@
+https://github.com/Krishramoju/Slide
 https://drive.google.com/drive/folders/1JBw-HcL7-LM3HhF3LTogcdyw_q7Cy69Z?usp=sharing
 https://github.com/Krishramoju/neuroos-chatbot/tree/main/.github/workflows
 https://github.com/Krishramoju/Brain-teaser
