@@ -1,3 +1,65 @@
+Here’s a **simple bullet-point list** of the hardware required to build the **NeuroSphere** device:
+
+---
+
+### 🧩 **Hardware Components for NeuroSphere**
+
+#### 🧠 Core System
+
+* **ARM-based SoC (System on Chip)** – for running NeuroOS and AI inference
+* **Neural Processing Unit (NPU)** – for fast local AI responses (e.g., voice, gesture)
+* **Custom motherboard** – compact, thermally efficient, low-power design
+
+---
+
+#### 🎥 Input Sensors
+
+* **Depth-sensing cameras (like LiDAR or Time-of-Flight)** – to track gestures and map the room in 3D
+* **Wide-angle RGB camera** – for basic computer vision and presence detection
+* **Microphone array** – for far-field voice recognition and noise cancellation
+* **Ambient light sensor** – to adjust projection brightness or detect day/night
+* **Thermal or IR sensor** – to detect human presence or body heat
+* **IMU (Inertial Measurement Unit)** – to detect movement if it's floating
+
+---
+
+#### 🖼️ Output System
+
+* **Miniature holographic projector** (LBS or micro-lens array tech) – for mid-air visuals
+* **Spatial audio speakers** – for immersive 3D sound output
+* **Haptic feedback (optional)** – subtle vibration or soundwave haptics
+
+---
+
+#### 📡 Connectivity
+
+* **Wi-Fi 6E / 7** – high-speed, low-latency internet access
+* **Bluetooth 5.3+** – to connect with wearables, keyboards, or headphones
+* **UWB (Ultra-Wideband)** – for precise device-to-device spatial awareness
+
+---
+
+#### 🔋 Power System
+
+* **Wireless charging coil** – for inductive or docked charging
+* **Lithium-polymer battery** – if the orb is semi-portable or levitating
+* **Efficient power management IC** – to handle sleep, active, and low-power modes
+
+---
+
+#### 🧲 Optional Components
+
+* **Maglev ring or internal fan system** – if the orb is to float or rotate
+* **Thermal dissipation module** – quiet heat handling without fans
+* **Edge TPU / M.2 AI accelerator** – for advanced local model support
+
+---
+
+Let me know if you want a **sourcing guide**, **component brands**, or a **3D exploded view mockup** of the device!
+
+
+
+
 Absolutely! Here's a **simple, clean bullet-point summary** of the **NeuroSphere** hardware concept:
 
 ---
