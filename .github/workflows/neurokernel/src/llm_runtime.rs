@@ -1,3 +1,6 @@
+Here's the **complete updated Rust file** that first determines an occupation based on user interests and then generates, corrects, and uploads relevant code:
+
+```rust
 use std::env;
 use std::io::{self, Write};
 use base64::{engine::general_purpose, Engine as _};
@@ -12,21 +15,22 @@ async fn main() {
     let github_user = env::var("GITHUB_USERNAME").expect("Set GITHUB_USERNAME");
     let openai_key = env::var("OPENAI_API_KEY").expect("Set OPENAI_API_KEY");
 
-    print!("\u{1F4AC} Enter your coding prompt: ");
+    print!("\u{1F4AC} What are your interests or goals (e.g., 'data analysis', 'web dev', 'AI')? ");
     io::stdout().flush().unwrap();
-    let mut prompt = String::new();
-    io::stdin().read_line(&mut prompt).unwrap();
-    let prompt = prompt.trim();
+    let mut user_input = String::new();
+    io::stdin().read_line(&mut user_input).unwrap();
+    let user_input = user_input.trim();
 
-    // 1. Generate code
-    let code = generate_code(&openai_key, prompt).await;
+    let occupation = determine_occupation(&openai_key, user_input).await;
+    println!("\u{1F464} Suggested occupation: {}", occupation);
+
+    let task_prompt = format!("Create a useful Python program for someone working as a {}.", occupation);
+    let code = generate_code(&openai_key, &task_prompt).await;
     println!("\u{2705} Code generated:\n{}", code);
 
-    // 2. Save code to temp file for correction
     let temp_path = "temp_code.py";
     std::fs::write(temp_path, &code).expect("Unable to write temp file");
 
-    // 3. Auto-correct code using Ruff
     let fix_status = Command::new("ruff")
         .arg("--fix")
         .arg(temp_path)
@@ -36,16 +40,13 @@ async fn main() {
         eprintln!("\u{274C} Ruff failed to correct code");
     }
 
-    // 4. Read corrected code
     let corrected_code = std::fs::read_to_string(temp_path).unwrap_or_else(|_| code.clone());
     println!("\n\u{1F527} Corrected Code:\n{}", corrected_code);
 
-    // 5. Create GitHub repo
-    let slug = sanitize(prompt);
+    let slug = sanitize(&task_prompt);
     let repo_name = format!("{}-{}", slug, Local::now().format("%H%M%S"));
     create_github_repo(&github_token, &repo_name).await;
 
-    // 6. Upload corrected code
     upload_code(&github_token, &github_user, &repo_name, "main.py", &corrected_code).await;
 
     println!("\n\u{1F517} GitHub Link: https://github.com/{}/{}", github_user, repo_name);
@@ -55,6 +56,30 @@ fn sanitize(text: &str) -> String {
     text.to_lowercase()
         .replace(|c: char| !c.is_ascii_alphanumeric(), "-")
         .trim_matches('-')
+        .to_string()
+}
+
+async fn determine_occupation(api_key: &str, interests: &str) -> String {
+    let client = Client::new();
+    let response = client
+        .post("https://api.openai.com/v1/chat/completions")
+        .bearer_auth(api_key)
+        .json(&json!({
+            "model": "gpt-4o",
+            "messages": [
+                { "role": "system", "content": "You are a career advisor. Based on the user's interests, suggest the most suitable technical occupation in a few words (e.g., 'Data Scientist', 'Web Developer', 'ML Engineer')." },
+                { "role": "user", "content": interests }
+            ],
+            "temperature": 0.5
+        }))
+        .send()
+        .await
+        .expect("Failed to get occupation");
+
+    let json: serde_json::Value = response.json().await.unwrap();
+    json["choices"][0]["message"]["content"]
+        .as_str()
+        .unwrap_or("Software Developer")
         .to_string()
 }
 
@@ -125,3 +150,4 @@ async fn upload_code(token: &str, user: &str, repo: &str, path: &str, code: &str
         panic!("\u{274C} Upload error: {}", err);
     }
 }
+```
