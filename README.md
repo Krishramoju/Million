@@ -212,7 +212,7 @@ Absolutely! Here's a **simple, clean bullet-point summary** of the **NeuroSphere
 Let me know if you want a **poster**, **demo animation script**, or **product launch page** for this!
 
 
-
+https://github.com/Krishramoju/Accelerometer-/tree/main
 https://github.com/Krishramoju/Battery/tree/main
 https://github.com/Krishramoju/Light/tree/main
 https://github.com/Krishramoju/Touch-sensor/tree/main
