@@ -212,6 +212,8 @@ Absolutely! Here's a **simple, clean bullet-point summary** of the **NeuroSphere
 Let me know if you want a **poster**, **demo animation script**, or **product launch page** for this!
 
 
+
+https://github.com/Krishramoju/Connections/tree/main
 https://github.com/Krishramoju/Start/tree/main
 https://github.com/Krishramoju/Category/tree/main
 https://github.com/Krishramoju/Settings/tree/main
@@ -221,7 +223,7 @@ https://github.com/Krishramoju/Index/tree/main
 https://github.com/Krishramoju/Camera/tree/main
 https://github.com/Krishramoju/Accelerometer-/tree/main
 https://github.https://github.com/Krishramoju/Vault
-com/Krishramoju/Battery/tree/main
+com/Krishramojuhttps://github.com/Krishramoju/Connections/tree/mainhttps://github.com/Krishramoju/Connections/tree/main/Battery/tree/main
 httpshttps://github.com/Krishramoju/Camera/tree/mainhttps://github.com/Krishramoju/Camera/tree/main://github.com/Krishramoju/Light/tree/main
 https://github.com/Krishramoju/Touch-sensor/tree/main
 https://github.com/Krishramoju/Atm_pressure/tree/main
