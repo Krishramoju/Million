@@ -7,6 +7,15 @@ use crate::memory_router::{MemoryRouter, MemorySegment};
 use crate::emotion_infer::EmotionState;
 use crate::intent_negotiator::Intent;
 
+/// A struct representing user preferences for personalized output
+#[derive(Clone)]
+pub struct UserProfile {
+    pub name: String,
+    pub prefers_formal: bool,
+    pub favorite_topics: Vec<String>,
+}
+
+/// Session holds user profile for personalization
 pub struct LLMSession {
     pub id: String,
     pub context_tokens: Vec<Token>,
@@ -14,6 +23,7 @@ pub struct LLMSession {
     pub emotion_state: EmotionState,
     pub last_accessed: Instant,
     pub intents: Vec<Intent>,
+    pub user_profile: UserProfile,
 }
 
 pub struct LLMScheduler {
@@ -29,9 +39,14 @@ impl LLMScheduler {
         }
     }
 
-    pub fn create_session(&mut self, session_id: &str) {
+    pub fn create_session(&mut self, session_id: &str, user_name: &str, prefers_formal: bool, topics: Vec<String>) {
         let memory = Arc::new(Mutex::new(MemoryRouter::new()));
         let emotion_state = EmotionState::neutral();
+        let user_profile = UserProfile {
+            name: user_name.to_string(),
+            prefers_formal,
+            favorite_topics: topics,
+        };
         let session = LLMSession {
             id: session_id.to_string(),
             context_tokens: Vec::new(),
@@ -39,6 +54,7 @@ impl LLMScheduler {
             emotion_state,
             last_accessed: Instant::now(),
             intents: Vec::new(),
+            user_profile,
         };
         self.sessions.insert(session_id.to_string(), session);
     }
@@ -50,45 +66,48 @@ impl LLMScheduler {
         let session = self.sessions.get_mut(session_id)
             .ok_or_else(|| format!("Session {} not found", session_id))?;
 
-        // Tokenize input
         let tokens = self.tokenizer.tokenize(input);
-
-        // Append tokens to context
         session.context_tokens.extend(tokens.clone());
-
-        // Update last accessed
         session.last_accessed = Instant::now();
 
-        // Update Memory
         {
             let mut mem = session.memory.lock().unwrap();
             mem.integrate_tokens(&tokens);
         }
 
-        // Infer emotion state from input
         session.emotion_state = EmotionState::from_text(input);
-
-        // Negotiate intent
         let intent = Intent::from_text(input);
         session.intents.push(intent.clone());
 
-        // Generate output tokens
-        let response_tokens = self.generate_response(&session.context_tokens, &session.memory);
-
-        // Convert tokens back to string
+        let response_tokens = self.generate_response(&session);
         let response = self.tokenizer.detokenize(&response_tokens);
 
         let duration_ms = start_time.elapsed().as_millis();
-
         Ok((response, duration_ms))
     }
 
-    fn generate_response(&self, context: &Vec<Token>, memory: &Arc<Mutex<MemoryRouter>>) -> Vec<Token> {
+    fn generate_response(&self, session: &LLMSession) -> Vec<Token> {
+        let context = &session.context_tokens;
         let slice_len = std::cmp::min(10, context.len());
-        let mut response = context[context.len() - slice_len..].to_vec();
-        response.reverse();
-        response.push(self.tokenizer.end_token());
-        response
+        let mut response_tokens = context[context.len() - slice_len..].to_vec();
+
+        // Personalization based on emotional tone and user preferences
+        let greeting = if session.user_profile.prefers_formal {
+            format!("Hello {}, how may I assist you today?", session.user_profile.name)
+        } else {
+            format!("Hey {}, what's up?", session.user_profile.name)
+        };
+
+        let greeting_tokens = self.tokenizer.tokenize(&greeting);
+        let mood_tokens = self.tokenizer.tokenize(&format!("I'm sensing you're feeling {:?}.", session.emotion_state));
+
+        // Build response
+        let mut result = greeting_tokens;
+        result.extend(mood_tokens);
+        result.extend(response_tokens.iter().rev()); // reversed context
+        result.push(self.tokenizer.end_token());
+
+        result
     }
 
     pub fn cleanup_sessions(&mut self, timeout_secs: u64) {
