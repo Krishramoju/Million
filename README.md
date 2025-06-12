@@ -211,7 +211,7 @@ Absolutely! Here's a **simple, clean bullet-point summary** of the **NeuroSphere
 
 Let me know if you want a **poster**, **demo animation script**, or **product launch page** for this!
 
-
+https://github.com/Krishramoju/Internet_of_things
 https://github.com/Krishramoju/Personalised/tree/main
 https://github.com/Krishramoju/Connections/tree/main
 https://github.com/Krishramoju/Start/tree/main
